@@ -18,7 +18,13 @@ export default function HomeScreen() {
       url = `${url}&type=${type.toLowerCase()}`;
     }
     try {
-      const response = await Axios.get(url);
+      const response = await Axios.get(url, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers": "*",
+        },
+      });
       console.log(response);
       if (response.data.Error) {
         setError(response.data.Error);

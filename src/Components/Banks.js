@@ -19,7 +19,13 @@ export default function Banks({ params }) {
     async function fetchData() {
       let url = `${BASE_URL}?apikey=7d4be86d&i=${id}`;
       try {
-        const response = await Axios.get(url);
+        const response = await Axios.get(url, {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+          },
+        });
         console.log(response);
         if (response.data.Error) {
           setError(response.data.Error);
